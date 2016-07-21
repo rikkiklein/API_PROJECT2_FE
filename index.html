@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WEATHER/IMAGE API</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+  <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+<body id="body">
+  <div class="wrapper">
+    <div class="left">
+      <h3>MENU:</h3>
+      <ul>
+        <li id="home">HOME</li>
+        <li id="favs-place">MY FAVORITE PLACES</li>
+        <li id="favs-image">MY FAVORITE IMAGES</li>
+        <li id="favs-place-clear">CLEAR MY FAVORITE PLACES</li>
+        <li id="favs-image-clear">CLEAR MY FAVORITE IMAGES</li>
+      </ul>
+    </div>
+    <div class="right" id="right">
+      <h2>WEATHER - IMAGE API</h2>
+      <div id="search-box-div">
+        <input id="search-box" type="text" placeholder="Search place to find out the weather" size="75" /><button type="button" name="button" id="search-glass"><span class="my-btn glyphicon glyphicon-search" id="search-btn"></span></button>
+      </div>
+      <div class="results" id="results">
+        <div class="description" id="results-description"></div>
+        <div class="flex-main" id="flex-main">
+          <div class="name" id="results-name"></div>
+          <div class="temp" id="results-temp"></div>
+        </div>
+
+        <div class="results-main" id="results-main"></div>
+      </div>
+      <div class="backgrounds" id="backgrounds"></div>
+      <div class="backgrounds2" id="backgrounds2"></div>
+    </div>
+  </div>
+<script src="https://code.jquery.com/jquery-2.2.1.min.js" charset="utf-8"></script>
+<script src="index.js" charset="utf-8"></script>
+</body>
+</html>
