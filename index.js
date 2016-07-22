@@ -315,18 +315,19 @@ favsPlace.addEventListener("click", function(ev){
           switch (key) {
             case "your_comment":
               var comment = resI[key];
-              // var card = document.createElement('div')
+              var card = document.createElement('div')
+
               var cardComment = document.createElement('div');
-                         cardComment.id = "commentID";
-                         cardComment.innerHTML="Your Comment: " + comment;
-                         card.appendChild(cardComment);
-                         outerCard.appendChild(card);
-                         console.log("outer", outerCard);
-                         favPlaces.appendChild(outerCard);
+              cardComment.id = "commentID";
+              cardComment.innerHTML="Your Comment: " + comment;
+              console.log("card", card);
+              card.appendChild(cardComment);
+              outerCard.appendChild(card);
+              console.log("outer", outerCard);
+              favPlaces.appendChild(outerCard);
 
 
               var update = document.createElement("button");
-
               break;
 
             case "name":
@@ -348,7 +349,7 @@ favsPlace.addEventListener("click", function(ev){
                 console.log("VIEW WAS PRESSED");
                 e.preventDefault();
                 var parent = $(this).parent();
-                var text = parent[0].children[0].childNodes[0].data
+                var text = parent[0].children[0].childNodes[0].data;
                 tempData = {
                   queryString: text
                 };
@@ -395,6 +396,7 @@ favsPlace.addEventListener("click", function(ev){
                 var submit = document.createElement("button");
                 submit.innerText = "submit comment";
                 card.appendChild(submit);
+                outerCard.appendChild(card);
                 submit.addEventListener("click", function(e){
                   e.preventDefault();
                   console.log("submit was pressed");
