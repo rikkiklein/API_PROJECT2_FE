@@ -315,81 +315,17 @@ favsPlace.addEventListener("click", function(ev){
           switch (key) {
             case "your_comment":
               var comment = resI[key];
-              var card = document.createElement('div')
-              var outerText = document.createElement('div');
-              var cardComment = document.createElement('div')
-              cardComment.id = "commentID";
-              cardComment.innerHTML="Your Comment: " + comment;
-
-              favPlaces.appendChild(card);
-              console.log("favPlaces", favPlaces);
-
-              view.addEventListener("click", function(e){
-                console.log("VIEW WAS PRESSED");
-                e.preventDefault();
-                var parent = $(this).parent();
-                var text = parent[0].children[0].childNodes[0].data
-                tempData = {
-                  queryString: text
-                };
-                post_places_search(tempData);
-                post_images_search(tempData);
-              }); //end of view more
-
-              var remove = document.createElement("button");
-              remove.id = "delete-id";
-              remove.innerText = "delete";
-              card.appendChild(remove);
-              favPlaces.appendChild(card);
-
-              remove.addEventListener("click", function(){
-                var parent = $(this).parent();
-                console.log("parent in remove", parent);
-                locatName = parent[0].children[0].childNodes[0].data;
-                console.log(locatName);
-                var dataPlace = {
-                  name: locatName
-                }
-                delete_places_favorites(dataPlace);
-              }); //end of remove/delete button
+              // var card = document.createElement('div')
+              var cardComment = document.createElement('div');
+                         cardComment.id = "commentID";
+                         cardComment.innerHTML="Your Comment: " + comment;
+                         card.appendChild(cardComment);
+                         outerCard.appendChild(card);
+                         console.log("outer", outerCard);
+                         favPlaces.appendChild(outerCard);
 
 
               var update = document.createElement("button");
-              update.id = "update-id";
-              update.innerText = "upate";
-              card.appendChild(update);
-              favPlaces.appendChild(card);
-
-              update.addEventListener("click", function(e){
-                console.log("UPDATE WAS PRESSED");
-                e.preventDefault();
-                var parent = $(this).parent();
-                var text = parent[0].children[0].childNodes[0].data
-                tempData = {
-                  queryString: text
-                };
-                console.log("TEMPDATA");
-                var textArea = document.createElement("textarea");
-                textArea.placeholder = "Please enter comment";
-                card.appendChild(textArea);
-                var submit = document.createElement("button");
-                submit.innerText = "submit comment";
-                card.appendChild(submit);
-                submit.addEventListener("click", function(e){
-                  e.preventDefault();
-                  console.log("submit was pressed");
-                  var textVal = textArea.value;
-                  var data = {
-                    name: text,
-                    your_comment: textVal
-                  }
-                  console.log("data comment", data);
-                  put_places_favorites(data, text);
-                })
-                //update method
-                // post_places_search(tempData);
-                // post_images_search(tempData);
-              }); //end of update
 
               break;
 
@@ -445,7 +381,7 @@ favsPlace.addEventListener("click", function(ev){
               favPlaces.appendChild(card);
 
               update.addEventListener("click", function(e){
-                console.log("UPDATE WAS PRESSED");
+                console.log("UPDATE IN NAME WAS PRESSED");
                 e.preventDefault();
                 var parent = $(this).parent();
                 var text = parent[0].children[0].childNodes[0].data
