@@ -304,7 +304,7 @@ textarea{
 padding-top: 4em;
 }
 
-#cardContainerID{
+#cardContainerID, .cardContainer{
 display: flex;
 flex-direction: column;
 border: 3px solid purple;
@@ -319,7 +319,7 @@ justify-content: center;
 
 }
 
-#cardWrapperID{
+#cardWrapperID, .cardWrapper{
 	display: flex;
 	flex-direction: column;
 
@@ -373,7 +373,7 @@ justify-content: center;
 
 
 
-#updateAreaID{
+#updateAreaID, .updateArea{
   order: 3;
 	display: flex;
 	flex-direction: column;
@@ -381,9 +381,7 @@ justify-content: center;
 	justify-content: center;
 	padding: 1em;
 	text-align: center;
-	border: 3px solid green;
 	width: 100%;
-
 }
 
 

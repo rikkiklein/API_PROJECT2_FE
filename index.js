@@ -308,14 +308,20 @@ favsPlace.addEventListener("click", function(ev){
       var resLen = response.length;
       var resI;
       for(var i = 0; i < resLen; i++){
+        console.log("i is", i);
         resI = response[i];
+        console.log("res[i]", resI);
         //make outer card for each i
         var cardContainer = document.createElement("article");
-        cardContainer.id = "cardContainerID";
+        cardContainer.id = "cardContainerID"+i;
+        console.log("cardCon[i]", cardContainer.id);
+        cardContainer.className = "cardContainer";
         favPlaces.appendChild(cardContainer);
 
           var cardWrapper = document.createElement("div");
           cardWrapper.id = "cardWrapperID";
+          cardWrapper.className="cardWrapper";
+          console.log(cardWrapper.id, "CID");
           cardContainer.appendChild(cardWrapper);
 
             var nameCard = document.createElement("div");
@@ -335,7 +341,8 @@ favsPlace.addEventListener("click", function(ev){
               cardSplit.appendChild(commentCard);
 
           var updateArea = document.createElement("div");
-          updateArea.id = "updateAreaID";
+          updateArea.id = "updateAreaID"+i;
+          updateArea.className = "updateArea"
           cardContainer.appendChild(updateArea);
 
 
@@ -399,7 +406,7 @@ favsPlace.addEventListener("click", function(ev){
 
               var update = document.createElement("button");
               update.id = "update-id";
-              update.innerText = "upate";
+              update.innerText = "comment";
               buttonCard.appendChild(update);
 
               update.addEventListener("click", function(e){
@@ -421,8 +428,19 @@ favsPlace.addEventListener("click", function(ev){
                 //append to the current div not the last updateArea.
                 var parent = $(this).parent();
                 console.log("update parent", parent);
-                updateArea.appendChild(textArea);
-                updateArea.appendChild(submit);
+
+
+                // if(updateArea.id.slice(-1) == cardWrapper.id.slice(-1)){
+                //   console.log("they match");
+                // }
+                var query = parent[0].parentElement.parentElement.parentElement.children[1];
+                console.log("Q", query);
+                // updateArea.appendChild(textArea);
+                // updateArea.appendChild(submit);
+
+                parent[0].parentElement.parentElement.parentElement.children[1].appendChild(textArea);
+                parent[0].parentElement.parentElement.parentElement.children[1].appendChild(submit);
+
                 submit.addEventListener("click", function(e){
                   e.preventDefault();
                   console.log("submit was pressed");
