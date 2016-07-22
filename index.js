@@ -121,6 +121,11 @@ window.onload = function() {
           data: data
         }).done(function(response){
              console.log("PUT RESPONSE", response);
+             if(response == "UPDATED"){
+               favPlaces.innerHTML = "ALL UPDATED!";
+               favPlaces.classList.add("message");
+
+             }
        }); // end ajax
   }
 
@@ -430,13 +435,8 @@ favsPlace.addEventListener("click", function(ev){
                 console.log("update parent", parent);
 
 
-                // if(updateArea.id.slice(-1) == cardWrapper.id.slice(-1)){
-                //   console.log("they match");
-                // }
                 var query = parent[0].parentElement.parentElement.parentElement.children[1];
                 console.log("Q", query);
-                // updateArea.appendChild(textArea);
-                // updateArea.appendChild(submit);
 
                 parent[0].parentElement.parentElement.parentElement.children[1].appendChild(textArea);
                 parent[0].parentElement.parentElement.parentElement.children[1].appendChild(submit);
@@ -452,9 +452,6 @@ favsPlace.addEventListener("click", function(ev){
                   console.log("data comment", data);
                   put_places_favorites(data, text);
                 })
-                //update method
-                // post_places_search(tempData);
-                // post_images_search(tempData);
               }); //end of update
 
               break;
@@ -511,7 +508,6 @@ favsPlace.addEventListener("click", function(ev){
           update.id = "update";
           update.className="glyphicon glyphicon-edit";
           update.innerText = "update, add comment"
-
           imgContainer.appendChild(img);
           imgContainer.appendChild(button);
           imgContainer.appendChild(remove);

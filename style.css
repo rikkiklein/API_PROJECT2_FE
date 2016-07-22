@@ -394,3 +394,11 @@ justify-content: center;
 	padding: .5em;
 
 }
+
+
+.message{
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: .2em;
+	font-size: 2em;
+}
