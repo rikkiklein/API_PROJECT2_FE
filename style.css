@@ -6,7 +6,17 @@ body{
   background: #485563;
   background: -webkit-linear-gradient(to left, #485563 , #29323c);
   background: linear-gradient(to left, #485563 , #29323c);
+
+  background: #BA5370; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #BA5370 , #F4E2D8); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #BA5370 , #F4E2D8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+background: #403A3E; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #403A3E , #BE5869); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #403A3E , #BE5869); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
+
 
 h2{
   padding-bottom: 1%;
@@ -147,13 +157,13 @@ button:hover{
   padding: 3em;
   border-left: 1px solid rgba(255,255,255,.897);
   background-size: cover;
-  background-position: center;
+  background-position: left 50% center;
   background-attachment: fixed;
 
-  background-image: -moz-linear-gradient(to top, rgba(206, 206, 206, 0.37), rgba(86, 86, 86, 0.7)), url("back.jpg");
-	background-image: -webkit-linear-gradient(to top, rgba(206, 206, 206, 0.37), rgba(86, 86, 86, 0.7)), url("back.jpg");
-	background-image: -ms-linear-gradient(to top, rgba(206, 206, 206, 0.137), rgba(86, 86, 86, 0.7)), url("back.jpg");
-	background-image: linear-gradient(to top, rgba(206, 206, 206, 0.1365417), rgba(66, 66, 66, 0.65417)), url("back.jpg");
+  background-image: -moz-linear-gradient(to top, rgba(206, 206, 206, 0.37), rgba(86, 86, 86, 0.7)), url("back3.jpg");
+	background-image: -webkit-linear-gradient(to top, rgba(206, 206, 206, 0.37), rgba(86, 86, 86, 0.7)), url("back3.jpg");
+	background-image: -ms-linear-gradient(to top, rgba(206, 206, 206, 0.137), rgba(86, 86, 86, 0.7)), url("back3.jpg");
+	background-image: linear-gradient(to top, rgba(206, 206, 206, 0.1365417), rgba(66, 66, 66, 0.65417)), url("back8.jpg");
 }
 
 #home,
