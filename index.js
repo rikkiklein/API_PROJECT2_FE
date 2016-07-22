@@ -309,47 +309,70 @@ favsPlace.addEventListener("click", function(ev){
       var resI;
       for(var i = 0; i < resLen; i++){
         resI = response[i];
+        //make outer card for each i
+        var cardContainer = document.createElement("article");
+        cardContainer.id = "cardContainerID";
+        favPlaces.appendChild(cardContainer);
+
+          var cardWrapper = document.createElement("div");
+          cardWrapper.id = "cardWrapperID";
+          cardContainer.appendChild(cardWrapper);
+
+            var nameCard = document.createElement("div");
+            nameCard.id = "nameCardID";
+            cardWrapper.appendChild(nameCard);
+
+            var cardSplit = document.createElement("div");
+            cardSplit.id = "cardSplitID";
+            cardWrapper.appendChild(cardSplit);
+
+              var buttonCard = document.createElement("div");
+              buttonCard.id = "buttonCardID";
+              cardSplit.appendChild(buttonCard);
+
+              var commentCard = document.createElement("div");
+              commentCard.id = "commentCardID";
+              cardSplit.appendChild(commentCard);
+
+          var updateArea = document.createElement("div");
+          updateArea.id = "updateAreaID";
+          cardContainer.appendChild(updateArea);
+
+
         for(var key in resI){
-          var outerCard = document.createElement("div");
-          outerCard.id = "outerCardID";
           switch (key) {
             case "your_comment":
+
               var comment = resI[key];
-              var card = document.createElement('div')
-
-              var cardComment = document.createElement('div');
-              cardComment.id = "commentID";
-              cardComment.innerHTML="Your Comment: " + comment;
-              console.log("card", card);
-              card.appendChild(cardComment);
-              outerCard.appendChild(card);
-              console.log("outer", outerCard);
-              favPlaces.appendChild(outerCard);
-
-
+              commentCard.innerHTML="Your Comment: " + comment;
+              console.log("parent of comment", $(this).parent());
+              // console.log("card", card);
+              // card.appendChild(cardComment);
+              // outerCard.appendChild(card);
+              // console.log("outer", outerCard);
+              // favPlaces.appendChild(outerCard);
               var update = document.createElement("button");
               break;
 
             case "name":
+
               var name = resI[key];
-              var card = document.createElement('div')
-              var p = document.createElement('p');
+              nameCard.innerHTML = name;
+
               var view = document.createElement("button");
-              p.innerHTML = name;
-              p.id="p-id";
-              card.appendChild(p);
               view.id = "view-id";
               view.innerText = "view this place";
-              card.id = "card-id"
-              card.appendChild(view);
-              favPlaces.appendChild(card);
+              buttonCard.appendChild(view);
+
               console.log("favPlaces", favPlaces);
 
               view.addEventListener("click", function(e){
                 console.log("VIEW WAS PRESSED");
                 e.preventDefault();
                 var parent = $(this).parent();
-                var text = parent[0].children[0].childNodes[0].data;
+                console.log("view parent", parent);
+                var text = parent[0].parentElement.parentElement.children[0].childNodes[0].data;
+                console.log("text", text);
                 tempData = {
                   queryString: text
                 };
@@ -360,13 +383,12 @@ favsPlace.addEventListener("click", function(ev){
               var remove = document.createElement("button");
               remove.id = "delete-id";
               remove.innerText = "delete";
-              card.appendChild(remove);
-              favPlaces.appendChild(card);
+              buttonCard.appendChild(remove);
 
               remove.addEventListener("click", function(){
                 var parent = $(this).parent();
                 console.log("parent in remove", parent);
-                locatName = parent[0].children[0].childNodes[0].data;
+                var locatName = parent[0].parentElement.parentElement.children[0].childNodes[0].data;
                 console.log(locatName);
                 var dataPlace = {
                   name: locatName
@@ -378,25 +400,29 @@ favsPlace.addEventListener("click", function(ev){
               var update = document.createElement("button");
               update.id = "update-id";
               update.innerText = "upate";
-              card.appendChild(update);
-              favPlaces.appendChild(card);
+              buttonCard.appendChild(update);
 
               update.addEventListener("click", function(e){
                 console.log("UPDATE IN NAME WAS PRESSED");
                 e.preventDefault();
                 var parent = $(this).parent();
-                var text = parent[0].children[0].childNodes[0].data
+                var text = parent[0].parentElement.parentElement.children[0].childNodes[0].data;
                 tempData = {
                   queryString: text
                 };
                 console.log("TEMPDATA");
                 var textArea = document.createElement("textarea");
-                textArea.placeholder = "Please enter comment";
-                card.appendChild(textArea);
+                textArea.placeholder = "Enter your comment...";
+                textArea.id = "textAreaID";
                 var submit = document.createElement("button");
                 submit.innerText = "submit comment";
-                card.appendChild(submit);
-                outerCard.appendChild(card);
+                submit.id = "submitID";
+
+                //append to the current div not the last updateArea.
+                var parent = $(this).parent();
+                console.log("update parent", parent);
+                updateArea.appendChild(textArea);
+                updateArea.appendChild(submit);
                 submit.addEventListener("click", function(e){
                   e.preventDefault();
                   console.log("submit was pressed");
