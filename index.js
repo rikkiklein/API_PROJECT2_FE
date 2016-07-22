@@ -112,6 +112,17 @@ window.onload = function() {
   }
 
 /***************AJAX CALLS*****************/
+  function put_places_favorites(data, upInputVal){
+    console.log(url + '/places/favorites/' + upInputVal);
+    $.ajax({
+          url: url + '/places/favorites/' + upInputVal,
+          dataType: 'json',
+          method: 'put',
+          data: data
+        }).done(function(response){
+             console.log("PUT RESPONSE", response);
+       }); // end ajax
+  }
 
   function post_places_search(data){
     console.log("AJAX CALL ################## POST PLACES/SEARCH #######################");
@@ -134,8 +145,48 @@ window.onload = function() {
       dataType: 'json'
     }).done(function(response) {
       console.log("RESPONSE FROM POST PLACES/FAVORITES:", response);
-      getFavPlaces();
+      get_places_favorites();
     }); // end ajax
+  }
+
+  function get_places_favorites(){
+    set_background("back2.jpg");
+
+    console.log("AJAX CALL ################## GET PLACES/FAVORITES #######################");
+    $.ajax({
+      url: url + '/places/favorites',
+      method: 'GET',
+      dataType: 'json'
+    }).done(function(response) {
+      console.log("RESPONSE FROM GET PLACES/FAVORITES:", response);
+      set_background("back2.jpg");
+      console.log("CALLING DISPLAY FAV PLACE");
+      displayFavPlace(response);
+    }); // end ajax
+  }
+
+  function delete_places_favorites(data){
+    console.log("AJAX CALL ################## DELETE PLACES/FAVORITES #######################");
+    console.log("DATA to DELETE:", data);
+    $.ajax({
+      url: url + '/places/favorites',
+      method: 'DELETE',
+      data: data,
+      dataType: 'json'
+    }).done(function(response) {
+      console.log("RESPONSE FROM DELETE PLACES/FAVORITES:", response);
+    }); // end ajax
+    location.reload();
+    getFavPlaces();
+
+  }
+  function delete_places(){
+    console.log("AJAX CALL ################## DELETE PLACES ALL #######################");
+    $.ajax({
+      url: url + '/places/',
+      method: 'DELETE',
+      dataType: 'json'
+    });
   }
 
   function post_images_search(data){
@@ -151,17 +202,6 @@ window.onload = function() {
       displayAllImages(response);
     }); // end ajax
   }
-  function get_images_favorites(){
-    console.log("AJAX CALL ################## GET IMAGES/FAVORITES #######################");
-    $.ajax({
-      url: url + '/images/favorites',
-      method: 'GET',
-      dataType: 'json'
-    }).done(function(response) {
-      console.log("RESPONSE FROM GET IMAGES/FAVORITES:", response);
-      displayFavImages(response);
-    }); // end ajax
-  }
   function post_images_favorites(data){
     console.log("AJAX CALL ################## POST IMAGES/FAVORITES #######################");
     $.ajax({
@@ -174,6 +214,37 @@ window.onload = function() {
     }); // end ajax
   }
 
+  function get_images_favorites(){
+    console.log("AJAX CALL ################## GET IMAGES/FAVORITES #######################");
+    $.ajax({
+      url: url + '/images/favorites',
+      method: 'GET',
+      dataType: 'json'
+    }).done(function(response) {
+      console.log("RESPONSE FROM GET IMAGES/FAVORITES:", response);
+      displayFavImages(response);
+    }); // end ajax
+  }
+
+  function delete_images(){
+    console.log("AJAX CALL ################## DELETE IMAGES ALL #######################");
+    $.ajax({
+      url: url + '/images/',
+      method: 'DELETE',
+      dataType: 'json'
+    });
+  }
+  function delete_images_favorites(data){
+    console.log("AJAX CALL ################## DELETE IMAGES/FAVORITES #######################");
+    $.ajax({
+      url: url + '/images/favorites',
+      method: 'DELETE',
+      data: data,
+      dataType: 'json'
+    }).done(function(response) {
+      console.log("RESPONSE FROM DELETE IMAGES/FAVORITES:", response);
+    }); // end ajax
+  }
 /***************END AJAX CALLS*****************/
 
 /*********************BUTTONS EVENT LISTENERS*************************/
@@ -203,12 +274,7 @@ window.onload = function() {
     ev.preventDefault();
     var permission = prompt("Are you sure you want to clear your favorite images? Y/N");
     if(permission.toLowerCase() == "y"){
-      console.log("AJAX CALL ################## DELETE IMAGES ALL #######################");
-      $.ajax({
-        url: url + '/images/',
-        method: 'DELETE',
-        dataType: 'json'
-      });
+      delete_images();
     }
   });
   favsPlaceClear.addEventListener("click", function(ev){
@@ -217,12 +283,7 @@ window.onload = function() {
     ev.preventDefault();
     var permission = prompt("Are you sure you want to clear your favorite images? Y/N");
     if(permission.toLowerCase() == "y"){
-      console.log("AJAX CALL ################## DELETE PLACES ALL #######################");
-      $.ajax({
-        url: url + '/places/',
-        method: 'DELETE',
-        dataType: 'json'
-      });
+      delete_places();
     }
   });
 
@@ -231,26 +292,11 @@ window.onload = function() {
 /*********************END BUTTONS EVENT LISTENERS***********************/
 
 /***********************FAV PLACE*************************/
-  favsPlace.addEventListener("click", function(ev){
-    console.log("FAV PLACE PRESSED");
-    set_background("back2.jpg");
-    ev.preventDefault();
-    getFavPlaces();
+favsPlace.addEventListener("click", function(ev){
+  console.log("FAV PLACE PRESSED");
+  ev.preventDefault();
+  get_places_favorites();
   })
-
-  function getFavPlaces(){
-    console.log("AJAX CALL ################## GET PLACES/FAVORITES #######################");
-    $.ajax({
-      url: url + '/places/favorites',
-      method: 'GET',
-      dataType: 'json'
-    }).done(function(response) {
-      console.log("RESPONSE FROM GET PLACES/FAVORITES:", response);
-      set_background("back2.jpg");
-      console.log("CALLING DISPLAY FAV PLACE");
-      displayFavPlace(response);
-    }); // end ajax
-  }
 
   function displayFavPlace(response){
     console.log("IN DISPLAY FAV PLACE","RESPONSE PASSED IN", response);
@@ -264,7 +310,89 @@ window.onload = function() {
       for(var i = 0; i < resLen; i++){
         resI = response[i];
         for(var key in resI){
+          var outerCard = document.createElement("div");
+          outerCard.id = "outerCardID";
           switch (key) {
+            case "your_comment":
+              var comment = resI[key];
+              var card = document.createElement('div')
+              var outerText = document.createElement('div');
+              var cardComment = document.createElement('div')
+              cardComment.id = "commentID";
+              cardComment.innerHTML="Your Comment: " + comment;
+
+              favPlaces.appendChild(card);
+              console.log("favPlaces", favPlaces);
+
+              view.addEventListener("click", function(e){
+                console.log("VIEW WAS PRESSED");
+                e.preventDefault();
+                var parent = $(this).parent();
+                var text = parent[0].children[0].childNodes[0].data
+                tempData = {
+                  queryString: text
+                };
+                post_places_search(tempData);
+                post_images_search(tempData);
+              }); //end of view more
+
+              var remove = document.createElement("button");
+              remove.id = "delete-id";
+              remove.innerText = "delete";
+              card.appendChild(remove);
+              favPlaces.appendChild(card);
+
+              remove.addEventListener("click", function(){
+                var parent = $(this).parent();
+                console.log("parent in remove", parent);
+                locatName = parent[0].children[0].childNodes[0].data;
+                console.log(locatName);
+                var dataPlace = {
+                  name: locatName
+                }
+                delete_places_favorites(dataPlace);
+              }); //end of remove/delete button
+
+
+              var update = document.createElement("button");
+              update.id = "update-id";
+              update.innerText = "upate";
+              card.appendChild(update);
+              favPlaces.appendChild(card);
+
+              update.addEventListener("click", function(e){
+                console.log("UPDATE WAS PRESSED");
+                e.preventDefault();
+                var parent = $(this).parent();
+                var text = parent[0].children[0].childNodes[0].data
+                tempData = {
+                  queryString: text
+                };
+                console.log("TEMPDATA");
+                var textArea = document.createElement("textarea");
+                textArea.placeholder = "Please enter comment";
+                card.appendChild(textArea);
+                var submit = document.createElement("button");
+                submit.innerText = "submit comment";
+                card.appendChild(submit);
+                submit.addEventListener("click", function(e){
+                  e.preventDefault();
+                  console.log("submit was pressed");
+                  var textVal = textArea.value;
+                  var data = {
+                    name: text,
+                    your_comment: textVal
+                  }
+                  console.log("data comment", data);
+                  put_places_favorites(data, text);
+                })
+                //update method
+                // post_places_search(tempData);
+                // post_images_search(tempData);
+              }); //end of update
+
+              break;
+
             case "name":
               var name = resI[key];
               var card = document.createElement('div')
@@ -290,10 +418,7 @@ window.onload = function() {
                 };
                 post_places_search(tempData);
                 post_images_search(tempData);
-
-                console.log("td", tempData);
-                console.log("DATA to POST:", tempData);
-              });
+              }); //end of view more
 
               var remove = document.createElement("button");
               remove.id = "delete-id";
@@ -304,23 +429,13 @@ window.onload = function() {
               remove.addEventListener("click", function(){
                 var parent = $(this).parent();
                 console.log("parent in remove", parent);
-                locatName = parent[0].children[0].innerText;
-
+                locatName = parent[0].children[0].childNodes[0].data;
                 console.log(locatName);
                 var dataPlace = {
                   name: locatName
                 }
-                console.log("AJAX CALL ################## DELETE PLACES/FAVORITES #######################");
-                console.log("DATA to DELETE:", dataPlace);
-                $.ajax({
-                  url: url + '/places/favorites',
-                  method: 'DELETE',
-                  data: dataPlace,
-                  dataType: 'json'
-                }).done(function(response) {
-                  console.log("RESPONSE FROM DELETE PLACES/FAVORITES:", response);
-                }); // end ajax
-              });
+                delete_places_favorites(dataPlace);
+              }); //end of remove/delete button
 
 
               var update = document.createElement("button");
@@ -329,10 +444,37 @@ window.onload = function() {
               card.appendChild(update);
               favPlaces.appendChild(card);
 
-              update.addEventListener("click", function(){
+              update.addEventListener("click", function(e){
+                console.log("UPDATE WAS PRESSED");
+                e.preventDefault();
                 var parent = $(this).parent();
-                console.log("parent in remove", parent);
-              });
+                var text = parent[0].children[0].childNodes[0].data
+                tempData = {
+                  queryString: text
+                };
+                console.log("TEMPDATA");
+                var textArea = document.createElement("textarea");
+                textArea.placeholder = "Please enter comment";
+                card.appendChild(textArea);
+                var submit = document.createElement("button");
+                submit.innerText = "submit comment";
+                card.appendChild(submit);
+                submit.addEventListener("click", function(e){
+                  e.preventDefault();
+                  console.log("submit was pressed");
+                  var textVal = textArea.value;
+                  var data = {
+                    name: text,
+                    your_comment: textVal
+                  }
+                  console.log("data comment", data);
+                  put_places_favorites(data, text);
+                })
+                //update method
+                // post_places_search(tempData);
+                // post_images_search(tempData);
+              }); //end of update
+
               break;
             default:
 
@@ -406,16 +548,8 @@ window.onload = function() {
             var data= {
               imgURL: dataImg
             }
+            delete_images_favorites(data);
 
-            console.log("AJAX CALL ################## DELETE IMAGES/FAVORITES #######################");
-            $.ajax({
-              url: url + '/images/favorites',
-              method: 'DELETE',
-              data: data,
-              dataType: 'json'
-            }).done(function(response) {
-              console.log("RESPONSE FROM DELETE IMAGES/FAVORITES:", response);
-            }); // end ajax
           }); // end add btn
         }
       }
@@ -590,4 +724,4 @@ window.onload = function() {
 
   } //end funx
 
-}; // end window onload fxn
+  }; // end window onload fxn

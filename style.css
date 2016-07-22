@@ -11,9 +11,9 @@ body{
   background: -webkit-linear-gradient(to left, #BA5370 , #F4E2D8); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to left, #BA5370 , #F4E2D8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-background: #403A3E; /* fallback for old browsers */
-background: -webkit-linear-gradient(to left, #403A3E , #BE5869); /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to left, #403A3E , #BE5869); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: #403A3E; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #403A3E , #BE5869); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #403A3E , #BE5869); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
 
@@ -72,8 +72,8 @@ img{
   border: 3px solid rgba(255,255,255, .513);
  }
 
-#backgrounds,
-#results{
+#allImages,
+#allPlaces, #favImages, #favPlaces{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -96,6 +96,22 @@ img{
   border: 2px solid rgba(255,255,255, .64);
   border-radius: 5px;
   background: rgba(255,255, 255, .4);
+}
+
+
+
+
+#favImages>#img-containerID{
+	height: 45vh;
+	width: 20vw;
+}
+#favImages>#img-containerID>img{
+ height: 70%;
+ width: 70%;
+}
+
+#update{
+	width: 80%
 }
 
 #search-glass{
@@ -180,7 +196,7 @@ button:hover{
   color: #ff6666;
 }
 
-#results{
+#allPlaces{
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -236,21 +252,6 @@ button:hover{
 }
 
 
-#card-id{
-  border: 3px solid rgba(0,0,0,.3);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width:30%;
-  font-weight: bold;
-  padding: 1em;
-  font-size:1em;
-  margin: 1%;
-  background: rgba(255,255, 255, .742);
-  border-radius: 5px;
-}
-
 #view-id, #delete-id, #update-id{
   width: 70%;
 }
@@ -290,4 +291,100 @@ button:hover{
 	display: block;
 	margin: 0 auto 2rem auto;
 	opacity: 0.5;
+}
+
+textarea{
+  color: gray;
+  text-transform: none;
+}
+
+
+
+#favPlaces{
+padding-top: 4em;
+}
+
+#outerCardID{
+	border: 3px solid purple;
+  background: rgba(255,255, 255, .742);
+  border: 3px solid rgba(0,0,0,.3);
+  justify-content: center;
+  align-items: center;
+	display: flex;
+	flex-direction: column;
+	border-radius: 5px;
+	width: 48%;
+	margin: 1%;
+	padding-bottom: 1em;
+
+}
+
+#nameCardID{
+	order: 1;
+	width: 100%;
+}
+
+#nameCardID>p{
+	color: #403a3e;
+	border-bottom:  3px solid rgba(0,0,0,.24);
+	order:  1;
+	align-items: center;
+	align-items:baseline;
+	padding: .6em;
+	background: white;
+}
+
+#card-id{
+	order: 2;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	padding: 1em;
+
+}
+
+
+#buttonCardId{
+	border-right: 3px solid rgba(0,0,0,.24);
+	padding: 1em;
+
+}
+
+
+
+#buttonCardId>button{
+	color: #403a3e;
+	padding: 1em;
+}
+
+#commentID{
+	padding: 3em;
+	color: #403a3e;
+}
+
+#updateAreaID{
+border-top: 3px solid rgba(0,0,0,.24);
+
+  order: 3;
+	display: flex;
+	flex-direction: row;
+	text-align: center;
+	justify-content: center;
+	padding: 1em;
+
+}
+
+#updateAreaID>#submitID{
+	width: 40px;
+}
+
+#submitID{
+	width: 85%;
+	margin-left: 2%;
+}
+
+#textAreaID{
+	border-radius: 5px;
+	width: 85%;
+	height: 60%;
 }
