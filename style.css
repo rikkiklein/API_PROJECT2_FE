@@ -138,7 +138,7 @@ button:hover{
   width: 20vw;
   padding: 1em;
   padding-top: 10em;
-  height: 150vh;
+  height: 100vh;
   border-right: 1px solid rgba(255,255,255,.897);
 }
 
@@ -146,21 +146,14 @@ button:hover{
   width: 80vw;
   padding: 3em;
   border-left: 1px solid rgba(255,255,255,.897);
-  background: url("back.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-<<<<<<< HEAD
-  background-image: -moz-linear-gradient(to top, rgba(86, 86, 86, 0.137), rgba(86, 86, 86, 0.7)), url("back3.jpg");
-	background-image: -webkit-linear-gradient(to top, rgba(86, 86, 86, 0.137), rgba(86, 86, 86, 0.7)), url("back3.jpg");
-	background-image: -ms-linear-gradient(to top, rgba(86, 86, 86, 0.137), rgba(86, 86, 86, 0.7)), url("back3.jpg");
-	background-image: linear-gradient(to top, rgba(66, 66, 66, 0.1365417), rgba(66, 66, 66, 0.65417)), url("back3.jpg");
-=======
-  background-image: -moz-linear-gradient(to top, rgba(206, 206, 206, 0.37), rgba(86, 86, 86, 0.7)), url("back3.jpg");
-	background-image: -webkit-linear-gradient(to top, rgba(206, 206, 206, 0.37), rgba(86, 86, 86, 0.7)), url("back3.jpg");
-	background-image: -ms-linear-gradient(to top, rgba(206, 206, 206, 0.137), rgba(86, 86, 86, 0.7)), url("back3.jpg");
-	background-image: linear-gradient(to top, rgba(206, 206, 206, 0.1365417), rgba(66, 66, 66, 0.65417)), url("back3.jpg");
->>>>>>> gh-pages
+
+  background-image: -moz-linear-gradient(to top, rgba(206, 206, 206, 0.37), rgba(86, 86, 86, 0.7)), url("back.jpg");
+	background-image: -webkit-linear-gradient(to top, rgba(206, 206, 206, 0.37), rgba(86, 86, 86, 0.7)), url("back.jpg");
+	background-image: -ms-linear-gradient(to top, rgba(206, 206, 206, 0.137), rgba(86, 86, 86, 0.7)), url("back.jpg");
+	background-image: linear-gradient(to top, rgba(206, 206, 206, 0.1365417), rgba(66, 66, 66, 0.65417)), url("back.jpg");
 }
 
 #home,
@@ -229,7 +222,7 @@ button:hover{
   text-align:center;
   font-size: 1em;
   width: 100%;
-  color: darkslategraygray;
+  color: darkslategray;
 }
 
 
@@ -257,4 +250,34 @@ button:hover{
   font-size: 1.5em;
   padding-top: 1em;
   color: #ff6666;
+}
+
+
+#footer{
+  border-top: 1px solid white;
+  background: #485563;
+  background: -webkit-linear-gradient(to left, #485563 , #29323c);
+  background: linear-gradient(to left, #485563 , #29323c);
+	color: white;
+	padding: .2em;
+  height: 15vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#footer .copyright {
+	color: white;
+	text-align: center;
+	font-size: 1em;
+	width: 50%;
+	display: block;
+	margin: 0 auto;
+}
+
+#footer .copyright:before {
+	content: '';
+	display: block;
+	margin: 0 auto 2rem auto;
+	opacity: 0.5;
 }
