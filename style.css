@@ -15,21 +15,28 @@ h2{
   text-align: center;
   display: block;
   margin: 0 auto;
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 h3{
   color: white;
   width: 50%;
   text-align: center;
+
 }
 
 li{
   list-style: none;
   text-align: justify;
   margin-top: 12%;
-}
 
+}
+.menu{
+  position: fixed;
+}
+ul{
+  position: fixed;
+}
 input{
   width: 60%;
   padding: 1em;
@@ -68,8 +75,8 @@ img{
 
 #img-containerID{
   padding: 1em;
-  width: 15vw;
-  height: 27vh;
+  width: 15.5vw;
+  height: 35vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -102,18 +109,19 @@ button{
   border-radius: 5px;
   padding: .6em;
   text-transform: uppercase;
-  letter-spacing: .07em;
-  margin-top: 2%;
+  letter-spacing: .2em;
+  margin-top: 6%;
   margin-right: 2%;
-  border: 1px solid #FF9999;
-  width: 45%;
-  font-size: .7em;
+  border: 1px solid gray;
+  width: 48%;
+  font-size: .8em;
   color: gray;
 }
 
 button:hover{
-    border: 1px solid #ff6666;
+    border: 1px solid darkslate;
     background: rgba(255,255,255, .97);
+    color: #111111;
 }
 
 .wrapper{
@@ -130,7 +138,7 @@ button:hover{
   width: 20vw;
   padding: 1em;
   padding-top: 10em;
-  height: 100vh;
+  height: 150vh;
   border-right: 1px solid rgba(255,255,255,.897);
 }
 
@@ -150,7 +158,9 @@ button:hover{
 
 #home,
 #favs-place,
-#favs-image{
+#favs-image,
+#favs-image-clear,
+#favs-place-clear{
   cursor: pointer;
 }
 
@@ -201,4 +211,43 @@ button:hover{
   padding: 1em;
   padding-top: 1.5em;
   text-align: center;
+}
+
+#addWeather{
+  broder: 3px solid blue;
+  border: 1px solid transparent;
+  border-radius: 0;
+  padding: 1em;
+  letter-spacing: .3em;
+  text-align:center;
+  font-size: 1em;
+  width: 100%;
+  color: darkslategraygray;
+}
+
+
+#card-id{
+  border: 3px solid rgba(0,0,0,.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:30%;
+  font-weight: bold;
+  padding: 1em;
+  font-size:1em;
+  margin: 1%;
+  background: rgba(255,255, 255, .742);
+  border-radius: 5px;
+}
+
+#view-id, #delete-id, #update-id{
+  width: 70%;
+}
+
+#p-id{
+  text-transform: uppercase;
+  font-size: 1.5em;
+  padding-top: 1em;
+  color: #ff6666;
 }
