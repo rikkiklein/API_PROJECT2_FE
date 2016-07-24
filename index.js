@@ -1,5 +1,4 @@
 window.onload = function() {
-
 /***************************INIT STUFF*****************************************/
   var searchBox           = document.getElementById('search-box');
   var searchBoxDiv        = document.getElementById('search-box-div');
@@ -27,6 +26,7 @@ window.onload = function() {
   var mvpArea             = document.getElementById("mvp-area");
   var infoID              = document.getElementById("infoID");
   var header              = document.getElementById("header");
+  var welcome             = document.getElementById("welcome");
   var imgContainer;
   var placeSearch;
   var tempData = {};
@@ -37,7 +37,7 @@ window.onload = function() {
   var url = 'http://localhost:3000';
   var locatName;
   // var url = "https://morning-temple-77469.herokuapp.com/";
-
+  hideMVP();
   //HIDE EVERYTHING
   function hideEverything(){
     hideAll();
@@ -47,11 +47,17 @@ window.onload = function() {
 
   function hideMVP(){
     mvpArea.style.display = "none";
+    header.style.display = "block";
+    mvpArea.classList.add("hide");
+    mvpArea.classList.remove("show");
+
   }
 
   function showMVP(){
     mvpArea.style.display = "flex";
     header.style.display = "none";
+    mvpArea.classList.remove("hide");
+    mvpArea.classList.add("show");
   }
 
   //ALL IMAGES/PLACES
@@ -72,6 +78,8 @@ window.onload = function() {
     showAllImages();
   }
   function showAllPlaces(){
+    welcome.style.display = "none";
+    header.style.display = "block";
     allPlaces.style.display = "flex";
     allPlaces.innerHTML = "";
     resultsDescript.innerHTML = "";
@@ -81,6 +89,8 @@ window.onload = function() {
     resultsMain.innerHTML = "";
   }
   function showAllImages(){
+    welcome.style.display = "none";
+    header.style.display = "block";
     allImages.innerHTML = "";
     allImages.style.display = "flex";
   }
@@ -98,16 +108,22 @@ window.onload = function() {
     favImages.style.display = "none";
   }
   function showFavorites(){
+    welcome.style.display = "none";
+    header.style.display = "block";
     favPlaces.innerHTML = "";
     favImages.innerHTML = "";
     favImages.style.display = "flex";
     favPlaces.style.display = "flex";
   }
   function showFavImages(){
+    welcome.style.display = "none";
+    header.style.display = "block";
     favImages.innerHTML="";
     favImages.style.display = "flex";
   }
   function showFavPlaces(){
+    welcome.style.display = "none";
+    header.style.display = "block";
     favPlaces.innerHTML = "";
     favPlaces.style.display = "flex";
   }
@@ -139,9 +155,12 @@ window.onload = function() {
         }).done(function(response){
              console.log("PUT RESPONSE", response);
              if(response == "UPDATED"){
+               var message = document.createElement("h3");
                favPlaces.innerHTML = "";
-               favPlaces.innerHTML = "ALL UPDATED!";
-               favPlaces.classList.add("message");
+               favPlaces.appendChild(message);
+               message.innerHTML = "";
+               message.innerHTML = "ALL UPDATED!";
+               message.classList.add("message");
              }
        }); // end ajax
   }
@@ -157,9 +176,11 @@ window.onload = function() {
       console.log("RESPONSE FROM POST PLACES/SEARCH:", response);
       if(response.cod == "404"){
         console.log("Please try again");
+        var message = document.createElement("h3");
         allPlaces.innerHTML = "";
-        allPlaces.innerHTML = "There were no results with the specified criteria. <br><br> Please try again.";
-        allPlaces.classList.add("message");
+        allPlaces.appendChild(message);
+        message.innerHTML = "There were no results with the specified criteria. <br><br> Please try again.";
+        message.classList.add("message");
       }
       else{
         displayAllPlaces(response);
@@ -185,7 +206,6 @@ window.onload = function() {
   }
 
   function get_places_favorites(){
-    set_background("back2.jpg");
 
     console.log("AJAX CALL ################## GET PLACES/FAVORITES #######################");
     $.ajax({
@@ -194,13 +214,14 @@ window.onload = function() {
       dataType: 'json'
     }).done(function(response) {
       console.log("RESPONSE FROM GET PLACES/FAVORITES:", response);
-      set_background("back2.jpg");
       console.log("CALLING DISPLAY FAV PLACE");
       if(response.length<1){
         displayFavPlace(response);
+        var message = document.createElement("h3");
         favPlaces.innerHTML = "";
-        favPlaces.innerHTML = "There are currently no favorites.<br>Go add some favorites!";
-        favPlaces.classList.add("message");
+        favPlaces.appendChild(message);
+        message.innerHTML = "There are currently no favorites.<br>Go add some favorites!";
+        message.classList.add("message");
         console.log("there are no favorites");
       }
       else{
@@ -250,15 +271,15 @@ window.onload = function() {
         console.log("RESPONSE FROM POST IMAGES/SEARCH:", response);
         if(response.totalHits == 0){
           console.log("Please try again");
+          var message = document.createElement("h3");
           allImages.innerHTML = "";
-          allImages.innerHTML = "There were no images with the specified criteria.";
-          allImages.classList.add("message");
+          allImages.appendChild(message);
+          message.innerHTML = "There were no images with the specified criteria.";
+          message.classList.add("message");
         }
         else{
           displayAllImages(response);
         }
-
-
     }); // end ajax
   }
   function post_images_favorites(data){
@@ -288,12 +309,14 @@ window.onload = function() {
       console.log("RESPONSE FROM GET IMAGES/FAVORITES:", response);
 
       if(response.length<1){
-
         console.log("there are no favorites");
         displayFavImages(response);
+
+        var message = document.createElement("h3");
         favImages.innerHTML = "";
-        favImages.innerHTML = "There are currently no favorites images.<br>Go add some favorites!";
-        favImages.classList.add("message");
+        favImages.appendChild(message);
+        message.innerHTML = "There are currently no favorites images.<br>Go add some favorites!";
+        message.classList.add("message");
       }
       else{
         displayFavImages(response);
@@ -327,6 +350,7 @@ window.onload = function() {
 /*********************BUTTONS EVENT LISTENERS*************************/
   searchBtn.addEventListener('click', function(ev) {
     hideEverything();
+    hideMVP();
     showAll();
     ev.preventDefault();
 
@@ -342,6 +366,7 @@ window.onload = function() {
 
   home.addEventListener("click", function(ev){
     hideEverything();
+    hideMVP();
     ev.preventDefault();
     location.reload();
   })
@@ -375,7 +400,7 @@ window.onload = function() {
     var ul    = document.createElement("ul");
 
     var checkArray = [
-      "The user can search for a place to display the current weather, a short description, the humidity level and some other temperature related information.",
+      "The user can search for a place to display; the current weather, a short description, the humidity level and some other temperature related information.",
       "The user is also displayed an array of images thay can save and view at a later time.",
       "The user can also select an image to be used as the current background.",
       "The user can save the location and view it at a later date with the updated weather and image information.",
@@ -400,6 +425,9 @@ window.onload = function() {
 /***********************FAV PLACE*************************/
 favsPlace.addEventListener("click", function(ev){
   console.log("FAV PLACE PRESSED");
+  hideEverything();
+  hideMVP();
+  showFavPlaces();
   ev.preventDefault();
   get_places_favorites();
   })
@@ -410,10 +438,16 @@ favsPlace.addEventListener("click", function(ev){
     hideAllImages();
     hideAllPlaces();
     showFavPlaces();
-    set_background("back17.jpg");
+    set_background("back4.jpg");
+    var h3Container = document.createElement("div");
     var h3 = document.createElement("h3");
-    h3.innerHTML = "FAVORITE PLACES:"
-    favPlaces.appendChild(h3);
+    h3Container.id = "titleMessage";
+    h3.innerHTML = "FAVORITE PLACES:";
+    h3Container.appendChild(h3);
+    favPlaces.appendChild(h3Container);
+
+    var favPlacesContainer = document.createElement("div");
+    favPlacesContainer.id = "favPlacesContainer";
     var resLen = response.length;
     var resI;
     for(var i = 0; i < resLen; i++){
@@ -425,7 +459,7 @@ favsPlace.addEventListener("click", function(ev){
       cardContainer.id = "cardContainerID"+i;
       console.log("cardCon[i]", cardContainer.id);
       cardContainer.className = "cardContainer";
-      favPlaces.appendChild(cardContainer);
+      favPlacesContainer.appendChild(cardContainer);
 
         var cardWrapper = document.createElement("div");
         cardWrapper.id = "cardWrapperID";
@@ -453,14 +487,14 @@ favsPlace.addEventListener("click", function(ev){
         updateArea.id = "updateAreaID"+i;
         updateArea.className = "updateArea"
         cardContainer.appendChild(updateArea);
-
+        favPlaces.appendChild(favPlacesContainer);
 
       for(var key in resI){
         switch (key) {
           case "your_comment":
 
             var comment = resI[key];
-            commentCard.innerHTML="Your Comment: " + comment;
+            commentCard.innerHTML="<h4>Your Comment:</h4> <br>" + comment;
             console.log("parent of comment", $(this).parent());
             var update = document.createElement("button");
             break;
@@ -472,7 +506,8 @@ favsPlace.addEventListener("click", function(ev){
 
             var view = document.createElement("button");
             view.id = "view-id";
-            view.innerText = "view this place";
+            view.className="glyphicon glyphicon-zoom-in";
+            view.innerText = "view this";
             buttonCard.appendChild(view);
 
             console.log("favPlaces", favPlaces);
@@ -494,6 +529,7 @@ favsPlace.addEventListener("click", function(ev){
             var remove = document.createElement("button");
             remove.id = "delete-id";
             remove.innerText = "delete";
+            remove.className = "glyphicon glyphicon-remove";
             buttonCard.appendChild(remove);
 
             remove.addEventListener("click", function(){
@@ -511,6 +547,7 @@ favsPlace.addEventListener("click", function(ev){
             var update = document.createElement("button");
             update.id = "update-id";
             update.innerText = "comment";
+            update.className = "glyphicon glyphicon-edit";
             buttonCard.appendChild(update);
 
             update.addEventListener("click", function(e){
@@ -565,6 +602,9 @@ favsPlace.addEventListener("click", function(ev){
   favsImage.addEventListener("click", function(ev){
     console.log("########FAV IMAGES##############");
     ev.preventDefault();
+    hideEverything();
+    hideMVP();
+    showFavImages();
     get_images_favorites();
   })
 
@@ -573,12 +613,21 @@ favsPlace.addEventListener("click", function(ev){
     hideAllPlaces();
     hideFavPlaces();
     showFavImages();
-    set_background("back2.jpg");
+    set_background("back4.jpg");
     console.log("IN DISPLAY FAV IMAGES");
     console.log("RES", response);
+    var h3Container = document.createElement("div");
     var h3 = document.createElement("h3");
+    h3Container.id = "imageH3";
     h3.innerHTML = "FAVORITE IMAGES:"
-    favImages.appendChild(h3);
+    h3Container.appendChild(h3);
+    favImages.appendChild(h3Container);
+
+    var favImagesContainer = document.createElement("div");
+    favImagesContainer.id = "favImagesContainer";
+
+    favImages.appendChild(favImagesContainer);
+
     var resLen = response.length;
     for(var i = 0; i < resLen; i++){
       console.log("i is", i);
@@ -588,7 +637,7 @@ favsPlace.addEventListener("click", function(ev){
           console.log("reskey[key]", resKey[key]);
           var imgContainer = document.createElement('div');
           imgContainer.id="img-containerID"
-          favImages.appendChild(imgContainer)
+          favImagesContainer.appendChild(imgContainer)
 
           var img = document.createElement('img');
           var pic = resKey[key];
@@ -602,7 +651,7 @@ favsPlace.addEventListener("click", function(ev){
 
           var remove = document.createElement("button");
           remove.id = "delete";
-          remove.className="glyphicon glyphicon-delete";
+          remove.className="glyphicon glyphicon-remove";
           remove.innerText = "delete"
 
           imgContainer.appendChild(img);
