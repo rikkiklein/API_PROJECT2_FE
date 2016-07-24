@@ -19,7 +19,7 @@ h2{
 }
 
 h3{
-  color: #ff6666;
+  color: white;
   width: 50%;
   text-align: center;
 }
@@ -948,7 +948,7 @@ textarea{
 @media screen and (max-width: 320px) */
 
 
-@media screen and (max-width: 736px){
+@media screen and (max-width: 836px){
   .message{
     font-size: .8em;
     width: 80%;
