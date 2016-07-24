@@ -37,7 +37,7 @@ window.onload = function() {
   // var url = 'http://localhost:3000';
 
   var locatName;
-  var url = "https://morning-temple-77469.herokuapp.com/";
+  var url = "https://morning-temple-77469.herokuapp.com";
   hideMVP();
   //HIDE EVERYTHING
   function hideEverything(){
