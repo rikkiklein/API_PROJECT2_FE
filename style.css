@@ -944,11 +944,7 @@ textarea{
 
 /*mobil*/
 
-/*@media screen and (max-width: 480px)
-@media screen and (max-width: 320px) */
-
-
-@media screen and (max-width: 836px){
+@media screen and (max-width: 736px){
   .message{
     font-size: .8em;
     width: 80%;
