@@ -41,10 +41,12 @@ li{
   margin-top: 12%;
 
 }
-.menu{
+
+/*ul{
   position: fixed;
-}
-ul{
+}*/
+
+.menu{
   position: fixed;
 }
 input{
@@ -401,4 +403,39 @@ justify-content: center;
 	text-transform: uppercase;
 	letter-spacing: .2em;
 	font-size: 2em;
+}
+
+
+#mvpArea{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+}
+#infoID{
+  border: 3px solid gray;
+  border-radius: 5px;
+  background: rgba(255,255,255,.93);
+  display: block;
+  width: 90%;
+  padding: 1em;
+  margin-top: 3%;
+
+}
+
+#infoID ul li{
+  color: gray;
+  padding: .5em;
+  margin: 1%;
+  list-style: disc;
+}
+
+#mvpArea h3{
+	margin-top: 5%;
+	padding: .5em;
+	border-bottom: dotted 1px white;
+  display: block;
+  text-align: center;
+  justify-content: center;
 }
