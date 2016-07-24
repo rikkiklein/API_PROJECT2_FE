@@ -408,7 +408,8 @@ window.onload = function() {
       "The user can view all their saved images and locations.",
       "When the user views all their locations, they can either view the specified location in more detail, they can delete this location from their favorite list, or they can add a comment to the specified location.",
       "When the user views all their saved images, they can select an image to be the current background or they can delete this image from their favorites.",
-      "In addition, the user has the capability to delete all their favorite images and locations.  An alert window confirms this action so they user won't accidentally delete all their favorite images and locations."
+      "In addition, the user has the capability to delete all their favorite images and locations.  An alert window confirms this action so they user won't accidentally delete all their favorite images and locations.",
+      "This website application is fully responsive as well. "
     ];
     for(var i = 0; i < checkArray.length; i++){
       var li= document.createElement("li");
