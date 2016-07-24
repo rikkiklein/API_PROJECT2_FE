@@ -197,6 +197,7 @@ window.onload = function() {
       set_background("back2.jpg");
       console.log("CALLING DISPLAY FAV PLACE");
       if(response.length<1){
+        displayFavPlace(response);
         favPlaces.innerHTML = "";
         favPlaces.innerHTML = "There are currently no favorites.<br>Go add some favorites!";
         favPlaces.classList.add("message");
@@ -287,10 +288,12 @@ window.onload = function() {
       console.log("RESPONSE FROM GET IMAGES/FAVORITES:", response);
 
       if(response.length<1){
+
+        console.log("there are no favorites");
+        displayFavImages(response);
         favImages.innerHTML = "";
         favImages.innerHTML = "There are currently no favorites images.<br>Go add some favorites!";
         favImages.classList.add("message");
-        console.log("there are no favorites");
       }
       else{
         displayFavImages(response);
@@ -407,7 +410,7 @@ favsPlace.addEventListener("click", function(ev){
     hideAllImages();
     hideAllPlaces();
     showFavPlaces();
-    set_background("back2.jpg");
+    set_background("back17.jpg");
     var h3 = document.createElement("h3");
     h3.innerHTML = "FAVORITE PLACES:"
     favPlaces.appendChild(h3);
