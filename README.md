@@ -46,8 +46,6 @@ The 2 API's that are implemented in this application are:
 
 <img src="https://github.com/rikkirabz/API_PROJECT2_FE/blob/master/WEATHER%20FAV.png"/>
 
-<img src="https://github.com/rikkirabz/API_PROJECT2_FE/blob/master/WEATHER%20RESPONSIVE.png"/>
-
 
 ### MVP Checklist:
  - The user can search for a place to display; the current weather, a short description, the humidity level and some other temperature related information.
